@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Organizer</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <nav
+        style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul>
+          <li><a href="/contact_create/" role="button">Create contact</a></li>
+          <li><a href="/" role="button"> Go back to the main page </a></li>
+        </ul>
+      </nav>
+
+      {% for contact in addressbook%}
+      <ul>
+        <li>
+          <a href="/contact_detail/{{contact.id}}" role="button" class="secondary">{{contact.name}}</a>
+          <a href="/contact_delete/{{contact.id}}" role="button" class="contrast">Delete contact</a>
+        </li>
+      </ul>
+      {% endfor %}
+    </main>
+  </body>
+</html>

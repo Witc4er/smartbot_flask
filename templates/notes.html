@@ -16,6 +16,7 @@
         <ul>
           <li><a href="/note_create/" role="button">Add note</a></li>
           <li><a href="/tag/" role="button">Add Tag</a></li>
+          <li><a href="/" role="button"> Go back to the main page </a></li>
         </ul>
       </nav>
 
@@ -23,7 +24,7 @@
       <ul>
         <li>
           {%if not note.done%}
-          <a href="/detail/{{note.id}}" role="button" class="outline"
+          <a href="/note_detail/{{note.id}}" role="button" class="outline"
             >{{note.name}}</a
           >
           <a href="/done/{{note.id}}" role="button">Mark Done</a>
@@ -32,7 +33,7 @@
           >
           {% else %}
 
-          <a href="/detail/{{note.id}}" role="button" class="secondary"
+          <a href="/note_detail/{{note.id}}" role="button" class="secondary"
             ><s>{{note.name}}</s></a
           >
           {% endif %}
