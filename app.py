@@ -14,12 +14,14 @@ def notes():
     _notes = db_session.query(Note).all()
     return render_template('notes.html', notes=_notes)
 
-@app.route('/notes/note_detail/<id>', strict_slashes=False)
+
+@app.route('/note_detail/<id>', strict_slashes=False)
 def detail(id):
     note = db_session.query(Note).filter(Note.id == id).first()
     return render_template('note_detail.html', note=note)
 
-@app.route('/notes/note_create/', methods=['GET', 'POST'], strict_slashes=False)
+
+@app.route('/note_create/', methods=['GET', 'POST'], strict_slashes=False)
 def note_create():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -34,7 +36,18 @@ def note_create():
         return redirect('/notes/')
     else:
         tags = db_session.query(Tag).all()
-    return render_template('note_detail.html')
+    return render_template('note_create.html', tags=tags)
+
+
+@app.route('/tag/', methods=['GET', 'POST'], strict_slashes=False)
+def add_tag():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        tag = Tag(name=name)
+        db_session.add(tag)
+        db_session.commit()
+        return redirect('/notes/')
+    return render_template('tag.html')
 
 if __name__ == '__main__':
     app.run()

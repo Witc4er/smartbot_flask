@@ -20,7 +20,7 @@ note_m2m_tag = Table(
 
 class Note(Base):
     __tablename__ = "notes"
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
     created = Column(DateTime, default=datetime.now())
     description = Column(String(150), nullable=False)
